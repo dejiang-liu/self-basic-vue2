@@ -53,8 +53,15 @@ export default {
       });
     },
     async sendForm() {
+      if (
+        this.accountForm.account == "admin" &&
+        this.accountForm.password == "admin"
+      ) {
+        this.$message.success("success");
+        this.$store.commit("SET_DJTOKEN", "cccc");
+      }
       const data = await login();
-      console.log('send form res => ', data);
+      console.log("send form res => ", data);
       // this.$store.commit("login/SET_CZTOKEN", "aabb");
       // this.$store.commit("SET_DJTOKEN", "cccc");
       // this.$store.commit("SET_XX", "xxxx");

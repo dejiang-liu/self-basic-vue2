@@ -47,12 +47,7 @@ export default {
     handleSelect(val) {
       this.activeIndex = val;
     },
-    btnFn() {
-      this.$message.success("success");
-    },
     loginFn() {
-      this.$message.success("success");
-
       this.activeIndex == "1"
         ? this.$refs.accountComp.submit()
         : this.$refs.phoneComp.submit();
