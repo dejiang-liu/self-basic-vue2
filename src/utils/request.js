@@ -31,7 +31,7 @@ axios.interceptors.response.use(
       router.push({
         name: 'Login'
       });
-      this.$message.error(res.data.msg);
+      // this.$message.error(res.data.msg);
     }
     return res;
   },
@@ -39,13 +39,12 @@ axios.interceptors.response.use(
     return Promise.reject(err);
   }
 )
-let base = '';
 
 export const POST = (url, params) => {
-  return axios.post(`${base}${url}`, params).then((res) => res.data);
+  return axios.post(`${url}`, params).then((res) => res.data);
 };
 export const GET = (url, params) => {
   return axios
-    .get(`${base}${url}`, { params })
+    .get(`${url}`, { params })
     .then((res) => res.data);
 };

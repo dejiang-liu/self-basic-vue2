@@ -1,15 +1,33 @@
 <template>
   <div class="sider-content">
-    <el-menu class="side-menu" @select="selectMenu" :default-active="defaultPath" :unique-opened="true">
+    <el-menu
+      class="side-menu"
+      @select="selectMenu"
+      :default-active="defaultPath"
+      :unique-opened="true"
+      :collapse="isCollapse"
+    >
       <div v-for="(item, index) in routerList" :key="index">
-        <el-submenu :index="item.path" v-if="item.children && item.children.length > 0"  >
+        <el-submenu
+          :index="item.path"
+          v-if="item.children && item.children.length > 0"
+        >
           <template slot="title">
-            <i class="el-icon-location"></i>
-            <span slot="title">{{item.meta.title}}</span>
+            <svg class="icon item-icon" aria-hidden="true">
+              <use xlink:href="#icon-yingyongfenlei"></use>
+            </svg>
+            <span v-if="!isCollapse">{{ item.meta.title }}</span>
           </template>
-          <el-menu-item v-for="(submenu, num) in item.children" :key="num" :index="submenu.path">{{submenu.meta.title}}</el-menu-item>
+          <el-menu-item
+            v-for="(submenu, num) in item.children"
+            :key="num"
+            :index="submenu.path"
+            >{{ submenu.meta.title }}</el-menu-item
+          >
         </el-submenu>
-        <el-menu-item :index="item.path" v-else>{{item.meta.title}}</el-menu-item>
+        <el-menu-item :index="item.path" v-else>{{
+          item.meta.title
+        }}</el-menu-item>
       </div>
     </el-menu>
   </div>
@@ -22,8 +40,9 @@ export default {
   name: "BasicSide",
   data() {
     return {
-      defaultPath: '',
+      defaultPath: "",
       routerList: [],
+      isCollapse: false,
     };
   },
   created() {
@@ -44,7 +63,11 @@ export default {
       }
       this.$router.push({
         path: val,
-      })
+      });
+    },
+    setSideSpread() {
+      console.log('set side spread');
+      this.isCollapse = !this.isCollapse;
     }
   },
 };
@@ -53,9 +76,14 @@ export default {
 <style lang="scss" scoped>
 .sider-content {
   box-sizing: border-box;
-  padding: 0 26px;
+  padding: 0 0;
   .side-menu {
     background: $sideBgc;
+  }
+  .item-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
   }
 }
 </style>

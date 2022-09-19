@@ -17,6 +17,7 @@
       <el-form-item label="密码：" prop="password">
         <el-input
           placeholder="password: admin"
+          show-password
           v-model="accountForm.password"
           class="form-input"
         ></el-input>
@@ -59,12 +60,11 @@ export default {
       ) {
         this.$message.success("success");
         this.$store.commit("SET_DJTOKEN", "cccc");
+        this.$router.push({
+          name: 'work',
+        })
       }
-      const data = await login();
-      console.log("send form res => ", data);
-      // this.$store.commit("login/SET_CZTOKEN", "aabb");
-      // this.$store.commit("SET_DJTOKEN", "cccc");
-      // this.$store.commit("SET_XX", "xxxx");
+
     },
   },
 };

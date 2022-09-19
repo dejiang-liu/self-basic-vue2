@@ -7,6 +7,8 @@ import ElementUI from 'element-ui';
 import './styles/element-variables.scss';
 import 'normalize.css';
 import '@/styles/common.scss';
+// 引入mock
+require('./mock/mock.js')
 
 Vue.use(ElementUI);
 

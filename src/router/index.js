@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
 import workRouter from './modules/work';
-import analysisRouter from './modules/analysis'
+import analysisRouter from './modules/analysis';
+import store from '@/store/index';
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,15 @@ const router = new VueRouter({
     ...routes,
     ...moduleArr
   ]
+})
+router.beforeResolve((to, from, next) => {
+  if (to.name == 'Login' || store.state.djtoken) {
+    next()
+  } else {
+    next({
+      name:'Login'
+    })
+  }
 })
 
 export default router

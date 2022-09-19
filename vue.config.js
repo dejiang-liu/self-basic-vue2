@@ -4,7 +4,7 @@ const baseurl =
   process.env.NODE_ENV === "development" ?
     process.env.VUE_APP_PROXY :
     process.env.VUE_APP_URL;
-
+const mockUrl = 'http://localhost:9999';
 module.exports = defineConfig({
   transpileDependencies: true,
 
@@ -23,6 +23,13 @@ module.exports = defineConfig({
           "^/": "",
         },
       },
+      "/mock": {
+        target: `${mockUrl}/`,
+        changeOrigin: true,
+        pathRewrite: {
+          "^/": "",
+        },
+      }
     }
   },
   css: {
