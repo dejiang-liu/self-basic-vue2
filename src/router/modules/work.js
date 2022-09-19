@@ -1,6 +1,6 @@
 const routes = [
   {
-    path: '/work',
+    path: '/',
     name: 'workpage',
     redirect: '/work/index',
     component: () => import('@/layout/basic-layout.vue'),

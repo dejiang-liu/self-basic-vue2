@@ -1,6 +1,6 @@
 const Mock = require('mockjs');
 // 成员列表
-const memberList = () => {
+export const memberList = () => {
   const data = Mock.mock({
     'memberList|10': [
       {
@@ -12,22 +12,18 @@ const memberList = () => {
       }
     ]
   })
-  return {code: 200, data, msg: 'success'};
+  return data;
 }
 // 柱状图数据
-const lineData = () => {
+export const barData = () => {
   const data = Mock.mock({
     'dataList|10': [
       {
-        'id|1': 0,
-        'username': /^[a-zA-Z]{4-8}$/,
+        'id|+1': 0,
+        'username': /^[a-zA-Z]{4,8}$/, // 随机生成用户名
         'num|1-99': 1,
       }
     ]
   })
-  return {code: 200, data, msg: 'success'}
+  return data
 }
-
-Mock.mock('/mock/member', 'get', memberList);
-Mock.mock('/mock/lineData', 'post', lineData);
-Mock.mock('/', 'get', 'aaaa')
