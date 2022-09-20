@@ -58,9 +58,6 @@ export default {
       this.routerList = arr;
     },
     selectMenu(val) {
-      if (this.$route.path == val) {
-        return;
-      }
       this.$router.push({
         path: val,
       });
